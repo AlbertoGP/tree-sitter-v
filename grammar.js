@@ -82,6 +82,7 @@ module.exports = grammar({
     [$._simple_type, $.in_operator, $._expression],
     [$.in_operator, $._expression],
     [$.in_operator, $.sum_type_casting_expression],
+    [$.unsafe_statement, $.sum_type_casting_expression],
     [$.function_type, $._simple_type],
     [$._simple_type, $.qualified_type],
     [$.if_statement],
@@ -344,7 +345,7 @@ module.exports = grammar({
     field_declaration_list: $ => seq(
       '{',
       optional(seq(
-        optional($.field_scopes), 
+        optional($.field_scopes),
         $.field_declaration,
         repeat(seq(terminator, optional($.field_scopes), $.field_declaration)),
         optional(terminator)
@@ -542,7 +543,7 @@ module.exports = grammar({
     ),
 
     in_operator: $ => seq(
-      commaSep1($.identifier), 
+      commaSep1($.identifier),
       'in',
       choice($._expression, $.range)
     ),
@@ -662,8 +663,8 @@ module.exports = grammar({
     slice_expression: $ => prec(PREC.primary, seq(
       field('operand', $._expression),
       '[',
-      field('start', optional($._expression)), 
-      '..', 
+      field('start', optional($._expression)),
+      '..',
       field('end', optional($._expression)),
       ']'
     )),

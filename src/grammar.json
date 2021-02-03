@@ -335,7 +335,7 @@
                 },
                 {
                   "type": "FIELD",
-                  "name": "name",
+                  "name": "alias",
                   "content": {
                     "type": "SYMBOL",
                     "name": "_module_identifier"
@@ -1558,18 +1558,6 @@
               "type": "BLANK"
             }
           ]
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "STRING",
-              "value": ","
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
         }
       ]
     },
@@ -2633,6 +2621,19 @@
         }
       ]
     },
+    "unsafe_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "unsafe"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_expression"
+        }
+      ]
+    },
     "if_statement": {
       "type": "SEQ",
       "members": [
@@ -3005,6 +3006,10 @@
         {
           "type": "SYMBOL",
           "name": "match_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "unsafe_statement"
         },
         {
           "type": "SYMBOL",
@@ -6691,7 +6696,7 @@
               },
               {
                 "type": "PATTERN",
-                "value": "[^*]*\\*+([^\\/*][^*]*\\*+)*"
+                "value": "[^*]*\\*+([^/*][^*]*\\*+)*"
               },
               {
                 "type": "STRING",
@@ -6725,6 +6730,10 @@
     ],
     [
       "in_operator",
+      "sum_type_casting_expression"
+    ],
+    [
+      "unsafe_statement",
       "sum_type_casting_expression"
     ],
     [
